@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: salesforce
+    schema: "{{ var('salesforce_schema', 'salesforce') }}"
+    database: "{{ var('salesforce_database', target.database) }}"
+    loader: Fivetran
+    loaded_at_field: _fivetran_synced
+    tables:
+      - name: case
+      - name: campaign
+
+  - name: log_data
+    schema: "{{ var('log_data_schema', 'log_data') }}"
+    database: "{{ var('log_data_database', target.database) }}"
+    loader: Fivetran
+    loaded_at_field: _fivetran_synced
+    tables:
+      - name: sfdc_log_map
